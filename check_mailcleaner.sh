@@ -173,24 +173,24 @@ SEPARATOR=" - "
 
 
 # Get data from SNMP queries
-DAILY_COUNTS=$(${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.10 2>&1)
+DAILY_COUNTS=$(${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.10 | tr -d '\"' 2>&1)
 if [ $? -ne 0 ]
 then
 	echo "CRITICAL: $DAILY_COUNTS"
 	exit $STATE_CRITICAL
 fi
 
-MSG_TOTAL=$(   ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.1)
-MSG_SPAM=$(    ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.2)
-MSG_BYTES=$(   ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.3)
-MSG_VIRUS=$(   ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.4)
+MSG_TOTAL=$(   ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.1 | tr -d '\"')
+MSG_SPAM=$(    ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.2 | tr -d '\"')
+MSG_BYTES=$(   ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.3 | tr -d '\"')
+MSG_VIRUS=$(   ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.4 | tr -d '\"')
 
-PROCS_STATUS=$(${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.5)
-SPOOL_STATUS=$(${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.6)
+PROCS_STATUS=$(${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.5 | tr -d '\"')
+SPOOL_STATUS=$(${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.6 | tr -d '\"')
 
-LOAD_STATUS=$( ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.7)
-PART_STATUS=$( ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.8)
-MEM_STATUS=$(  ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.9)
+LOAD_STATUS=$( ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.7 | tr -d '\"')
+PART_STATUS=$( ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.8 | tr -d '\"')
+MEM_STATUS=$(  ${SNMPWALK} -v2c -c ${COMMUNITY} -O qv ${MC_HOST} 1.3.6.1.4.1.2021.8.1.101.9 | tr -d '\"')
 
 
 
